@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AlertService } from 'src/app/core/services/alert/alert.service';
 import { TranslationService } from 'src/app/core/services/translation/translation.service';
 import { StorageService } from 'src/app/shared/storage/storage.service';
-import { Order, OrderDetail, PaymentOrder, Product, ProductItem } from '../models/resultCode';
+import { Order, OrderDetail, ProductItem } from '../models/resultCode';
 import { StoreService } from '../services/store.service';
 
 @Component({
@@ -117,7 +117,7 @@ export class MyCartComponent implements OnInit {
   confirmPayment(){
     let result: Order = {
       phoneNumber: this.OrderForm.value.phoneNumber,
-      products: this.cartItems,
+      //products: this.cartItems,
       totalPrice: this.totalPrice,
       totalPayment: this.OrderForm.value.totalPay,
       change: this.OrderForm.value.change,

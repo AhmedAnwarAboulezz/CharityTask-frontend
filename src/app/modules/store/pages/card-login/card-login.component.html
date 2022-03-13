@@ -14,11 +14,11 @@
               <!-- -----------login form----------- -->
               <form method="post" class="d-block mt-4 animate" [formGroup]="mainForm" (ngSubmit)="login()">
                 <mat-form-field class="w-100 text-start" appearance="outline">
-                  <mat-label>{{ 'STORE.USERNAME' | translate }}</mat-label>
+                  <mat-label>{{ 'UserName' | translate }}</mat-label>
                   <input type="text" formControlName="userName" matInput placeholder="user name" />
                 </mat-form-field>
                 <mat-form-field class="w-100 text-start" appearance="outline">
-                  <mat-label>{{ 'STORE.OTPCODE' | translate }}</mat-label>  
+                  <mat-label>{{ 'Password' | translate }}</mat-label>  
                   <input type="text"  formControlName="password" matInput
                     placeholder="*********" />
                 </mat-form-field>    
@@ -28,20 +28,11 @@
               </form>
             </div> 
         </div>
-        <!-- <mat-divider></mat-divider> -->
+        <mat-divider></mat-divider>
         <!-- <div class="d-flex justify-content-between mt-2 p-2">
             <p class="text-dark m-2 d-flex align-items-center align-self-end">
                 {{ 'COPYRIGHT' | translate }}
             </p>
-            <a (click)="openDialog(termsInformation)" class="
-                text-dark
-                m-0
-                d-flex
-                align-items-center align-self-end
-                cursor-pointer
-                ">
-                {{ 'TERMS' | translate }}
-            </a>
         </div> -->
       </div>
     </div>

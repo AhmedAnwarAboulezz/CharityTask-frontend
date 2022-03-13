@@ -5,7 +5,6 @@ import * as moment from 'moment';
 import { AlertService } from 'src/app/core/services/alert/alert.service';
 import { TranslationService } from 'src/app/core/services/translation/translation.service';
 import { StorageService } from 'src/app/shared/storage/storage.service';
-import { StoreService } from '../services/store.service';
 
 @Component({
   selector: 'app-card-login',

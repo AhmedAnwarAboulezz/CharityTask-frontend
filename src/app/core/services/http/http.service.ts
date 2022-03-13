@@ -24,35 +24,49 @@ export class HttpService {
 
   constructor(private http: HttpClient, private alertService: AlertService) {}
 
-  get<T>(APIName: string): Observable<T | any> {
+  getData<T>(APIName: string): Observable<T | any> {
     return this.http.get<T>(`${this.serverUrl}${APIName}`).pipe(
       map((event: any) => {
         return event;
-        // if (event.data?.data || event.data) {
-        //   return event.data;
-        // } else {
-        //   this.alertHandling(event);
-        //   return;
-        // }
       })
     );
   }
-
-  post(APIName: string, body?: any) {
+  get<T>(APIName: string): Observable<T | any> {
+    return this.http.get<T>(`${this.serverUrl}${APIName}`).pipe(
+      map((event: any) => {
+        if (event.data?.data || event.data) {
+          return event.data;
+        } else {
+          this.alertHandling(event);
+          return;
+        }
+      })
+    );
+  }
+  postData(APIName: string, body?: any) {
     return this.http
       .post(`${this.serverUrl}${APIName}`, body ? body : null)
       .pipe(
         map((event: any) => {
           console.log(`🚀 ~ returnthis.http.post ~ event`, event);
           return event;
-          // if (event.data) {
-          //   return event.data;
-          // }
-          // if (event.result) {
-          //   return event.result;
-          // }
-          //this.alertHandling(event);
-          //return;
+        })
+      );
+  }
+  post(APIName: string, body?: any) {
+    return this.http
+      .post(`${this.serverUrl}${APIName}`, body ? body : null)
+      .pipe(
+        map((event: any) => {
+          console.log(`🚀 ~ returnthis.http.post ~ event`, event);
+          if (event.data) {
+            return event.data;
+          }
+          if (event.result) {
+            return event.result;
+          }
+          this.alertHandling(event);
+          return;
         })
       );
   }

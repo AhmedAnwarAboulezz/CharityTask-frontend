@@ -1,8 +1,5 @@
 <app-store-toolbar [cartCount]="cartCount"></app-store-toolbar>
 <section class="page-wrapper d-flex flex-column h-100">  
-    <div class="d-flex justify-content-between align-items-start">
-      <h3>{{ 'STORE.MYCART' | translate }} </h3>
-    </div>
     <div class="grid-container">
       <div class="card-wrapper d-flex flex-column justify-content-start">
         <div class="d-flex justify-content-between align-items-center p-0 m-0">
@@ -55,7 +52,6 @@
       </div>  
       <div class="card-wrapper spanRow d-flex flex-column justify-content-start" style="height: fit-content;">
         <form method="post" class="d-block mt-4 animate" [formGroup]="OrderForm" (ngSubmit)="confirmPayment()">
-
         <div class="d-flex justify-content-center align-items-end p-0 mt-2">
           <p class="text-middle font-22 font-weight-bold p-0 m-0">
             {{'STORE.ORDERREVIEW' | translate}}
@@ -101,21 +97,15 @@
                   <input type="number" formControlName="change" [disabled]="true" matInput placeholder="€">
               </mat-form-field>
               </div>
-
-            </div> 
-          
+            </div>          
         </div> 
         <mat-divider></mat-divider>
         <div class="d-flex justify-content-end mt-3">
-          <!-- <a class="edit cursor-pointer mt-2" routerLink="/store">
-            {{ 'STORE.CONTINUESHOPPING' | translate }}
-          </a> -->
           <button class="main-btn  edit" [disabled]="OrderForm.invalid || OrderForm.value.totalPay < totalPrice"  type="submit"  mat-button>
             {{ 'STORE.PAY' | translate }}
           </button>
         </div>
         </form>
       </div>
-
     </div>
   </section>

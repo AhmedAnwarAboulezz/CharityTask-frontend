@@ -1,10 +1,8 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import * as moment from 'moment';
-import { iif } from 'rxjs';
 import { AlertService } from 'src/app/core/services/alert/alert.service';
 import { TranslationService } from 'src/app/core/services/translation/translation.service';
 import { StorageService } from 'src/app/shared/storage/storage.service';
-import { Product, ProductItem } from '../models/resultCode';
+import {  ProductItem } from '../models/resultCode';
 import { StoreService } from '../services/store.service';
 
 @Component({
@@ -24,10 +22,8 @@ export class ProductsComponent implements OnInit {
   constructor(
     private translateService: TranslationService,
     private localStorage: StorageService,
-    private changeRef: ChangeDetectorRef,
     private service:StoreService,
     private alertService: AlertService
-
     ) { 
   }
 
@@ -52,17 +48,10 @@ export class ProductsComponent implements OnInit {
       let result =  this.getItemsQunatity(res);
       this.products = result;
       this.allProducts = this.products;
-      this.resetCount();   
-      
+      this.resetCount(); 
+    },error => {
+      this.alertService.error("an error happened");
     });
-    // this.service.getCardsPaged().subscribe(res=>{
-    //   console.log("ANWAR CARDS: ", res);
-    //   let result = res.data;
-    //   result =  this.getItemsQunatity(result);
-    //   this.products = result;
-    //   this.allProducts = this.products;
-    //   this.resetCount();      
-    // });
   }
 
   getItemsQunatity(products: any[]): any[]{
@@ -78,7 +67,6 @@ export class ProductsComponent implements OnInit {
     this.cartItems.map(a=>a.quantity).forEach(quan => {
       if(quan !== undefined) this.cartCount = this.cartCount + quan;
     });
-    //this.changeRef.detectChanges();
   }
   isInCart(item:any): boolean{
     return this.cartItems.map(a=>a.id).includes(item.id);
