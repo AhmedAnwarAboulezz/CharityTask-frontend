@@ -23,7 +23,7 @@
     "SIGNUP": "Sign Up"
   },
   "STORE":{
-    "TITLE":"Digital Gift Card Store",
+    "TITLE":"Bake Sale",
     "TITLESUB":"Send it in seconds",
     "ACTIVECARDS":"My Orders",
     "PRODUCTS":"Store > Products",
@@ -31,7 +31,7 @@
     "CHECKOUT":"Store > My Cart > Checkout",
     "SEARCH":"Search",
     "ADDTOCART":"Add To Cart",
-    "ACCURECY":"SAR",
+    "ACCURECY":"€",
     "SHOPPINGCART":"Shopping Cart",
     "ORDERREVIEW":"Summary",
     "NOOFPROD":"No.Of Products",

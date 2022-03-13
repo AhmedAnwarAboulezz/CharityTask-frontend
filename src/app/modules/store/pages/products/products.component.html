@@ -13,22 +13,18 @@
         <div class="col-sm-3" *ngFor="let item of products">
           <div class="storesListContainer">
             <div class="d-flex justify-content-center align-items-center item-image">
-              <img [src]="item.photo" alt="card_toplogo" />
+              <img [src]="'assets/images/products/'+ item.code+'.png'" alt="card_toplogo" />
             </div>
-            <div class="d-flex justify-content-between align-items-start">
+            <div class="d-flex justify-content-center align-items-center">
               <p class="p-0 m-0">
                 <span class="pr-1 pl-1 text-middle font-weight-bold">{{ lang === 'en' ? item.nameFl : item.nameSl }}</span>
-              </p>
-            </div>
-            <div class="d-flex justify-content-start flex-column align-items-start mt-2">
-              <p class="pr-1 pl-1 font-weight-bold text-price">
-               {{ item.price?.amount }} {{'STORE.ACCURECY' | translate}}
+                <span class="pr-1 pl-1 text-center font-weight-bold">{{ item.code }}</span>
+
               </p>
             </div>
             <div class="d-flex justify-content-center align-items-start" *ngIf="!isInCart(item)" >
               <button  mat-button class="main-btn btn-body font-18"  (click)="addToCart(item,0)">
-                <div class="d-flex align-items-center">
-                   
+                <div class="d-flex align-items-center">                   
                     <span >{{'STORE.ADDTOCART' | translate}}</span>
                 </div>
               </button>

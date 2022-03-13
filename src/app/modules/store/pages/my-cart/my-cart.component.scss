@@ -84,7 +84,7 @@ background : #047835;
   grid-template-rows: auto;
   gap: 30px;
   @include large-screen {
-    grid-template-columns: 56% 38% 6%
+    grid-template-columns: 40% 60% 0%
   }
   .card-wrapper {
     background-color: #fff;
