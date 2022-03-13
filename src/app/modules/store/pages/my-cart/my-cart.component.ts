@@ -125,6 +125,9 @@ export class MyCartComponent implements OnInit {
     }
     console.log("Result : ", result);
     this.service.AddCheckout(result).subscribe(res=>{
+      this.alertService.success("Order Created Successfully");
+      this.cartItems = [];
+      this.localStorage.removeItemHash('cart-prod');
       this.router.navigate(['/store/']);
     },error => {
       this.alertService.error(error.error);

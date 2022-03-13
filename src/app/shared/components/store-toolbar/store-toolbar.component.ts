@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslationService } from 'src/app/core/services/translation/translation.service';
+import { StorageService } from '../../storage/storage.service';
 
 @Component({
   selector: 'app-store-toolbar',
@@ -13,7 +14,8 @@ export class StoreToolbarComponent implements OnInit {
    
   constructor(
     private translateService: TranslationService,
-    private router: Router
+    private router: Router,
+    private localStorage: StorageService
     ) { }
 
   ngOnInit(): void {
@@ -23,14 +25,16 @@ export class StoreToolbarComponent implements OnInit {
   goToMyCards(){
     this.router.navigate(['/store/my-cart']);
   }
-  goToMyOrders(){
-    this.router.navigate(['/store/my-orders']);
-  }
   goToTerms(){
     this.router.navigate(['/store/terms-conditions']);
   }
   changeLanguage() {
     this.translateService.changeLanguage();
+  }
+  logout(){
+    this.localStorage.clearStorage();
+    this.router.navigate(['/store/card-login']);
+
   }
 
 }

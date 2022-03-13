@@ -13,9 +13,6 @@
     </button>
      <button mat-button class=" icon-header font-15" (click)="changeLanguage()">
         <div class="d-flex align-items-center">
-            <!-- <svg class="m-inline-end-2" xmlns="http://www.w3.org/2000/svg" fill="none" width="18" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-            </svg>             -->
             <span class="font-english">{{ lang === 'en' ? 'Estonian' : 'English' }}</span>
         </div>
       </button>   
@@ -24,12 +21,10 @@
 <mat-toolbar class="top-bar mobile-grid-container">
     <div style="color: white;"><a href="/store" style="color: white;">
       <p class="font-weight-bold font-20 white">{{'STORE.TITLE' | translate}}</p></a>
-    </div>  
-
+    </div>
     <!-- <img class="header-logo" src="assets/images/logo/logo.jpg" alt="card_toplogo" /> -->
     <div class="d-flex align-items-end p-0 mobile-grid-container grid-reverse" role="list">
-      <div>
-        
+      <div>        
         <button mat-button class=" icon-header font-18"  (click)="goToMyCards()">
             <div class="d-flex align-items-end">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 22" width="32px" height="32px" stroke="#fff">
@@ -43,20 +38,12 @@
             </div>
         </button>
       </div>
-
-      
-     
-
       <div>
-        <button mat-button class=" btn-header font-18" (click)="goToMyOrders()">
-          <div class="d-flex align-items-center">
-              <span class="material-icons active-card">person</span>
-              <span >{{'STORE.ACTIVECARDS' | translate}}</span>
+        <button mat-button class=" icon-header font-18"  (click)="logout()">
+          <div class="d-flex align-items-end">
+              <span class="material-icons">logout</span>
           </div>
       </button>
       </div>
-      <!-- <mat-list-item role="listitem">
-
-      </mat-list-item> -->
     </div>
   </mat-toolbar>
