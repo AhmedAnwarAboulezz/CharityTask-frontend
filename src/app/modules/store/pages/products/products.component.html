@@ -1,17 +1,27 @@
 <app-store-toolbar [cartCount]="cartCount"></app-store-toolbar>
 <section class="page-wrapper">
+  <div>
+    <mat-radio-group class="w-100 text-start" aria-label="Product Type" (change)="changeProductType($event)" [value]="productTypeId">
+      <mat-radio-button [value]="1"  >{{ 'STORE.cafeteria' | translate }}</mat-radio-button>
+      <mat-radio-button [value]="2" >{{ 'STORE.outlet' | translate }}</mat-radio-button>
+    </mat-radio-group>
+  </div>
   <div class="d-flex justify-content-between align-items-start">
-    <!-- <h1>{{ 'STORE.PRODUCTS' | translate }} </h1> -->
-    <mat-form-field class="w-100 text-start" appearance="outline">
+    <mat-form-field class="w-75 text-start" appearance="outline">
       <mat-label>{{ 'STORE.SEARCH' | translate }}</mat-label>
-      <input type="Search" #search (keyup)="filterProducts(search.value)" matInput>
+      <input type="Search" autocomplete="off" #search (keyup)="filterProducts(search.value)" matInput>
     </mat-form-field>
+    <button  mat-button class="main-btn btn-body font-18"  (click)="resetCart()">
+      <div class="d-flex align-items-center">
+         <span>Reset</span>
+          <!-- <span class="material-icons">delete</span> -->
+      </div>
+    </button>
   </div>
   <div class="storesList">
       <div class="row col-sm-12 m-0 mt-2">
-        {{products | json}}
         <div class="col-sm-3" *ngFor="let item of products">
-          <div class="storesListContainer">
+          <div class="storesListContainer" [ngClass]="{'disabled-div': (item.remainInStock != undefined && item.remainInStock <= 0) }">
             <div class="d-flex justify-content-center align-items-center item-image">
               <img [src]="'assets/images/products/'+ item.code+'.png'" alt="card_toplogo" />
             </div>

@@ -91,14 +91,14 @@
               </div>
               <div class="col-md-4">
                 <mat-form-field class="w-100 text-start" appearance="outline">
-                  <mat-label>{{ 'STORE.PHONENUMBER' | translate }}</mat-label>
-                  <input type="number" formControlName="totalPay" autocomplete="off" (input)="setCharge()" matInput placeholder="€">
+                  <mat-label>{{ 'STORE.totalPay' | translate }}</mat-label>
+                  <input type="number" formControlName="totalPay" autocomplete="off" (input)="setChange()" matInput placeholder="€">
               </mat-form-field>
               </div>
               <div class="col-md-4">
                 <mat-form-field class="w-100 text-start" appearance="outline">
-                  <mat-label>{{ 'STORE.PHONENUMBER' | translate }}</mat-label>
-                  <input type="number" formControlName="charge" [disabled]="true" matInput placeholder="€">
+                  <mat-label>{{ 'STORE.change' | translate }}</mat-label>
+                  <input type="number" formControlName="change" [disabled]="true" matInput placeholder="€">
               </mat-form-field>
               </div>
 

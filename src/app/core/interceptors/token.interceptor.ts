@@ -67,9 +67,11 @@ export class TokenInterceptor implements HttpInterceptor {
               this.alertService.error('!Session Ended!');
               localStorage.clear();
               this.router.navigateByUrl('/account/login');
-            } else if (error.status === 400 || error.status === 502 || error.status === 503) {
-              this.alertService.error('!Technical Error!');
-            } else if (error.status === 405) {
+            }
+            //  else if (error.status === 400 || error.status === 502 || error.status === 503) {
+            //   this.alertService.error('!Technical Error!');
+            // }
+             else if (error.status === 405) {
               this.alertService.error('!NOT ALLOWED ERROR!');
             } else if (error.status === 500) {
               this.alertService.error('!SYSTEM ERROR!');

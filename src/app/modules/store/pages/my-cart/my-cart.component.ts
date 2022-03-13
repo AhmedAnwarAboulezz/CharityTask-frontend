@@ -5,6 +5,7 @@ import { AlertService } from 'src/app/core/services/alert/alert.service';
 import { TranslationService } from 'src/app/core/services/translation/translation.service';
 import { StorageService } from 'src/app/shared/storage/storage.service';
 import { Order, OrderDetail, PaymentOrder, Product, ProductItem } from '../models/resultCode';
+import { StoreService } from '../services/store.service';
 
 @Component({
   selector: 'app-my-cart',
@@ -25,12 +26,12 @@ export class MyCartComponent implements OnInit {
     private alertService: AlertService,
     private fb: FormBuilder,
     private router: Router,
-    private changeRef: ChangeDetectorRef
+    private service:StoreService
   ) {
     this.OrderForm = this.fb.group({
       phoneNumber: ['', [Validators.minLength(8)]],
       totalPay: [null, [Validators.required,Validators.min(this.totalPrice)]],
-      charge: [0, [Validators.required,Validators.min(0)]],
+      change: [0, [Validators.required,Validators.min(0)]],
     });
    }
 
@@ -53,11 +54,14 @@ export class MyCartComponent implements OnInit {
     this.cartItems.map(a=>a.quantity).forEach(quan => {
       if(quan !== undefined) this.cartCount = this.cartCount + quan;
     });
-    //this.changeRef.detectChanges();
   }
 
   addToCart(proditem:any,type: number){
     if(proditem !== undefined){ 
+      if(type == 1 && proditem.remainInStock !==undefined && proditem.quantity !== undefined && proditem.remainInStock <= (proditem.quantity)){
+        this.alertService.error("You can't exceed amount available in stock");
+        return;
+      }
       if(type == 2){
         this.cartItems = this.cartItems.filter(a=>a.id !== proditem.id);
       }
@@ -65,10 +69,9 @@ export class MyCartComponent implements OnInit {
         proditem.quantity = proditem.quantity !== undefined ? proditem.quantity + type : 0;
         if(proditem.quantity <= 0) this.cartItems = this.cartItems.filter(a=>a.id !== proditem.id);
       }
-      if(type == 1) this.alertService.info("Item added to cart");
-      else if(type == -1 || type == 2) this.alertService.warning("Item removed from cart");
+      //if(type == 1) this.alertService.info("Item added to cart");
+      //else if(type == -1 || type == 2) this.alertService.warning("Item removed from cart");
       this.resetCount();
-      debugger;
       this.localStorage.setObjectHash('cart-prod', this.cartItems);
       this.checkEmptyCart();
       this.getTotalPrice();
@@ -88,7 +91,7 @@ export class MyCartComponent implements OnInit {
     this.cartItems.forEach((item:ProductItem) => {
       this.totalPrice+= ((item.quantity ?? 0 )*(item.price ?? 0));
     });
-    this.setCharge();
+    this.setChange();
     this.OrderForm.controls['totalPay'].clearValidators();
     this.OrderForm.controls['totalPay'].setValidators([Validators.required,Validators.min(this.totalPrice)]);
   }
@@ -96,9 +99,9 @@ export class MyCartComponent implements OnInit {
   getTotalCount(){
     return this.cartItems.length;
   }
-  setCharge(){
-    let charge:number = this.OrderForm.value.totalPay - this.totalPrice;
-    this.OrderForm.controls['charge'].setValue(charge);
+  setChange(){
+    let change:number = this.OrderForm.value.totalPay - this.totalPrice;
+    this.OrderForm.controls['change'].setValue(change);
   }
   mapOrderDetails(products:ProductItem[]):OrderDetail[]{
    let res:OrderDetail[] = [];
@@ -121,8 +124,11 @@ export class MyCartComponent implements OnInit {
       orderDetails: this.mapOrderDetails(this.cartItems)
     }
     console.log("Result : ", result);
-    //this.localStorage.setObjectHash('pay-prod', result);
-    //this.router.navigate(['/store/checkout']);
+    this.service.AddCheckout(result).subscribe(res=>{
+      this.router.navigate(['/store/']);
+    },error => {
+      this.alertService.error(error.error);
+    });
   }
 }
 

@@ -44,16 +44,15 @@ export class HttpService {
       .pipe(
         map((event: any) => {
           console.log(`🚀 ~ returnthis.http.post ~ event`, event);
-          if (event.data) {
-            return event.data;
-          }
-
-          if (event.result) {
-            return event.result;
-          }
-
-          this.alertHandling(event);
-          return;
+          return event;
+          // if (event.data) {
+          //   return event.data;
+          // }
+          // if (event.result) {
+          //   return event.result;
+          // }
+          //this.alertHandling(event);
+          //return;
         })
       );
   }

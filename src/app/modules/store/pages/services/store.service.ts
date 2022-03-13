@@ -9,16 +9,6 @@ export class StoreService {
 
   constructor(private httpService: HttpService) { }
 
-  getComplainStatuses() {
-    return this.httpService.get('Lookups/GetAllComplainStatuses');
-  }
-
-
-
-  getCitiesByCountryId(code: string) {
-    return this.httpService.get(`Lookups/GetAllCitiesByCountryCode/${code}`);
-  }
-
   getOrderDetails(orderId:any){
     return this.httpService.get(`DigitalCard/PaymentTransactions/GetOrderDetails/${orderId}`);
 
@@ -57,13 +47,18 @@ export class StoreService {
     
   }
 
+
   getCardDetailsByCode(szscratchcode:string){
 
     return this.httpService.get(`DigitalCard/PaymentTransactions/GetOrderDetailsByScratch/${szscratchcode}`);
 
   }
 
-  getProducts() {
-    return this.httpService.get(`Products/GetAllByProductType/1`);
+  AddCheckout(sendToObj:any){
+    return this.httpService.post('Orders/AddCheckout', sendToObj)
+    
+  }
+  getProducts(productTypeId:any) {
+    return this.httpService.get(`Products/GetAllByProductType/${productTypeId}`);
   }
 }

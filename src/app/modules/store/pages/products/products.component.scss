@@ -1,108 +1,4 @@
-// /* Global Styles */
 
-// * {
-//     font-family: 'Roboto', Arial, sans-serif;
-//     color: #616161;
-//     box-sizing: border-box;
-//     -webkit-font-smoothing: antialiased;
-//     -moz-osx-font-smoothing: grayscale;
-//   }
-
-//   body {
-//     margin: 0;
-//   }
-
-//   .container {
-//     display: flex;
-//     flex-direction: row;
-//   }
-
-//   router-outlet + *  {
-//     padding: 0 16px;
-//   }
-
-// //   /* Text */
-
-// //   h1 {
-// //     font-size: 32px;
-// //   }
-
-// //   h2 {
-// //     font-size: 20px;
-// //   }
-
-// //   h1, h2 {
-// //     font-weight: lighter;
-// //   }
-
-// //   p {
-// //     font-size: 14px;
-// //   }
-
-// //   /* Hyperlink */
-
-// //   a {
-// //     cursor: pointer;
-// //     color: #ef0027;
-// //     text-decoration: none;
-// //   }
-
-// //   a:hover {
-// //     opacity: 0.8;
-// //   }
-
-// //   /* Input */
-
-//   input {
-//     font-size: 14px;
-//     border-radius: 2px;
-//     padding: 8px;
-//     margin-bottom: 16px;
-//     border: 1px solid #BDBDBD;
-//   }
-
-//   label {
-//     font-size: 12px;
-//     font-weight: bold;
-//     margin-bottom: 4px;
-//     display: block;
-//     text-transform: uppercase;
-//    }
-
-//   /* Button */
-//   .button, button {
-//     display: inline-flex;
-//     align-items: center;
-//     padding: 8px 16px;
-//     border-radius: 2px;
-//     font-size: 14px;
-//     cursor: pointer;
-//     background-color: #ef0027;
-//     color: white;
-//     border: none;
-//   }
-
-//   .button:hover, button:hover {
-//     opacity: 0.8;
-//     font-weight: normal;
-//   }
-
-//   .button:disabled, button:disabled {
-//     opacity: 0.5;
-//     cursor: auto;
-//   }
-
-//   // /* Fancy Button */
-
-  // .fancy-button {
-  //   background-color: white;
-  //   color: #ef0027;
-  // }
-
-  // .fancy-button i.material-icons {
-  //   color: #ef0027;
-  //   padding-right: 4px;
-  // }
 
   .cart-item, .shipping-item {
     width: 100%;
@@ -187,4 +83,59 @@ background : #047835;
   .page-wrapper {
     max-height: 84%;
   }
+}
+
+
+::ng-deep .mat-radio-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.4em;
+  transition: none;
+  * {
+    transition: none;
+  }
+
+  .mat-radio-button {
+    width: 50%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border: 1px solid $dark;
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    &:first-child {
+      margin-inline-end: 1rem;
+    }
+    &:nth-child(2) {
+      margin-inline-end: 1rem;
+    }
+    &:hover {
+      border-width: 2px;
+    }
+    &.mat-radio-checked {
+      color: $white;
+      background-color: $primary;
+    }
+    .mat-radio-label {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .mat-radio-container {
+        display: none;
+      }
+
+      .mat-radio-label-content {
+        padding: 0;
+      }
+    }
+  }
+}
+
+
+.disabled-div{
+  pointer-events: none;
+  opacity: 0.4;
 }

@@ -18,6 +18,7 @@ export class ProductsComponent implements OnInit {
   allProducts: ProductItem[] = [];
   cartItems: ProductItem[] = [];
   cartCount = 0;
+  productTypeId=1;
   @ViewChild('StoreToolbarComponent', { static: true }) StoreToolbarComponent: any;
 
   constructor(
@@ -40,9 +41,13 @@ export class ProductsComponent implements OnInit {
     if(res == null) return [];
     return res;
   }
+  changeProductType(event:any){
+     this.productTypeId = event.value;
+     this.getProducts();
+  }
 
   getProducts(){
-    this.service.getProducts().subscribe(res=>{
+    this.service.getProducts(this.productTypeId).subscribe(res=>{
       console.log("Products: ", res);
       let result =  this.getItemsQunatity(res);
       this.products = result;
@@ -98,14 +103,18 @@ export class ProductsComponent implements OnInit {
         this.cartItems.push(newproditem);
       }
       else{
+        if(type == 1 && proditem.remainInStock !==undefined && proditem.quantity !== undefined && proditem.remainInStock <= (proditem.quantity)){
+          this.alertService.error("You can't exceed amount available in stock");
+          return;
+        }
         proditem.quantity = proditem.quantity !== undefined ? proditem.quantity + type : 0;
         let test = this.cartItems.find(a=>a.id == proditem.id);
         if(test !== undefined && test.quantity !== undefined){ 
           test.quantity = test.quantity + type;
           if(test.quantity <= 0) this.cartItems = this.cartItems.filter(a=>a.id !== proditem.id);
         }
-        if(type == 1|| type == 0) this.alertService.info("Item added to cart");
-        else if(type == -1) this.alertService.warning("Item removed from cart");
+        //if(type == 1|| type == 0) this.alertService.info("Item added to cart");
+        //else if(type == -1) this.alertService.warning("Item removed from cart");
       }
       this.resetCount();
       this.localStorage.setObjectHash('cart-prod', this.cartItems);
@@ -114,14 +123,21 @@ export class ProductsComponent implements OnInit {
   }
   filterProducts(name: string){
     if(name !== undefined && name !== ''){
+      name = name.toLowerCase();
       if(this.lang === 'en'){
-        this.products = this.allProducts.filter(a=>a.nameFl?.toLowerCase().includes(name) || a.price?.toString().includes(name));
+        this.products = this.allProducts.filter(a=>a.nameFl?.toLowerCase().includes(name) || a.code?.toLowerCase().includes(name) || a.price?.toString().includes(name));
       }
       else{
-        this.products = this.allProducts.filter(a=>a.nameSl?.includes(name) || a.price?.toString().includes(name));
+        this.products = this.allProducts.filter(a=>a.nameSl?.toLowerCase().includes(name) || a.code?.toLowerCase().includes(name) || a.price?.toString().includes(name));
       }
     } 
     else this.products = this.allProducts;
+  }
+
+  resetCart(){
+    this.cartItems = [];
+    this.localStorage.removeItemHash('cart-prod');
+    this.getProducts();
   }
 
 }

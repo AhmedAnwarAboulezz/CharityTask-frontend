@@ -72,7 +72,7 @@ export class Product{
     price?:number;
     productTypeId?:number;
     amountInStock?:number;
-    remainInStock?:string;
+    remainInStock?:number;
     quantity?:number;
   }
 

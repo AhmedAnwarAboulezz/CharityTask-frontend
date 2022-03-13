@@ -79,7 +79,12 @@
       "PURCASECARD":"",
       "DOWNLOAD":"Download Image",
       "SENDWHATSAPP":"Send WhatsApp",
-      "BINCODE":"Pin Code"
+      "BINCODE":"Pin Code",
+
+      "cafeteria":"Cafeteria",
+      "outlet":"Outlet",
+      "totalPay":"Total Pay",
+      "change":"Change"
     },
     "required_validation": "This field is required",
     "minlength_validation": "Min Length ",
