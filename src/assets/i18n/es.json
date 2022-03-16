@@ -3,6 +3,7 @@
   "LOGOUT": "Logi välja",
   "UserName":"kasutajanimi",
   "Password":"Parool",
+  "HELP":"Help?",
   "STORE":{
     "TITLE":"Kodukohvik",
     "SEARCH":"Otsing",

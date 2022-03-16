@@ -25,7 +25,7 @@ export class StoreToolbarComponent implements OnInit {
   goToMyCards(){
     this.router.navigate(['/store/my-cart']);
   }
-  goToTerms(){
+  goToHelp(){
     this.router.navigate(['/store/terms-conditions']);
   }
   changeLanguage() {
